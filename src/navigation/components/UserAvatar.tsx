@@ -1,12 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
-import { NavRootState, NavDispatch } from "../store";
-import { updateWorkStatus } from "../store/userSlice";
-import { WorkStatus } from "../../shared/types";
 import { useState } from "react";
+import useSharedProfile from "../../shared/store/useSharedProfile";
+import { WorkStatus } from "../../shared/types";
 
 export const UserAvatar = () => {
-  const { profile } = useSelector((state: NavRootState) => state.user);
-  const dispatch = useDispatch<NavDispatch>();
+  const { profile, setWorkStatus } = useSharedProfile();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const statusLabels: Record<WorkStatus, string> = {
@@ -16,7 +13,7 @@ export const UserAvatar = () => {
   };
 
   const handleStatusChange = (status: WorkStatus) => {
-    dispatch(updateWorkStatus(status));
+    setWorkStatus(status);
     setDropdownOpen(false);
   };
 

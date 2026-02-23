@@ -1,15 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
-import { DashboardRootState, DashboardDispatch } from "../store";
-import { updateWorkStatus } from "../store/userSlice";
-import { WorkStatus } from "../../shared/types";
 import { WorkStatusSelect } from "./WorkStatusSelect";
+import useSharedProfile from "../../shared/store/useSharedProfile";
+import { WorkStatus } from "../../shared/types";
 
 export const WorkStatusCard = ({ className = "" }: { className?: string }) => {
-  const { profile } = useSelector((state: DashboardRootState) => state.user);
-  const dispatch = useDispatch<DashboardDispatch>();
+  const { profile, setWorkStatus } = useSharedProfile();
 
   const handleStatusChange = (val: WorkStatus) => {
-    dispatch(updateWorkStatus(val));
+    setWorkStatus(val);
   };
 
   return (

@@ -14,6 +14,7 @@ export const userSlice = createSlice({
   name: "navUser",
   initialState,
   reducers: {
+    // Navigation-specific functionality would go here. This updateWorkStatus will not update the dashboard by design.
     updateWorkStatus: (state, action: PayloadAction<WorkStatus>) => {
       state.profile.workStatus = action.payload;
     },
